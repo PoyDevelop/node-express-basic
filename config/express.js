@@ -3,7 +3,8 @@ var morgan = require('morgan'); //เก็บ Log
 var compression = require('compression'); //บีบอัดข้อมูล
 var bodyParser = require('body-parser'); //รับ req body
 var sass = require('node-sass-middleware'); // ใช้งาน sass
-var validator = require('express-validator');
+var validator = require('express-validator'); //ตัว Validator
+var cookieSession = require('cookie-session');
 
 
 module.exports = function(){
@@ -13,6 +14,10 @@ module.exports = function(){
     } else {
         app.use(compression);
     }
+    app.use(cookieSession({
+        name: 'session',
+        keys: ['auoishdoaasdiojas', '4sf6d5sdf8sd6f45sd'] //ใส่ไป 2 key ให้หมุนเวียนการใช้
+    }))
 
     app.use(bodyParser.urlencoded({
         extended: true

@@ -1,7 +1,13 @@
 exports.render = function(req, res){
+    var isLoggedIn = false;
+    if(typeof req.session.remember !== 'undefined'){
+        isLoggedIn = req.session.remember;
+    }
+
     res.render('user', {
-        'title' : 'NodeJS - MVC!',
-        'message' : 'Hello World Jade!'
+        title: 'NodeJS - MVC!',
+        message: 'Hello World Jade!',
+        isLoggedIn: isLoggedIn
     });
 
 };
@@ -26,6 +32,12 @@ exports.login = function(req, res){
         return;
     }
 
+    //check Session
+    if(req.body.remember==='remember'){
+        req.session.remember = true;
+        req.session.email = req.body.email;
+        req.sessionOptions.maxAge = 60000; // อายุ Cookie
+    }
 
     console.log(req.body);
     console.log('Email: ' + req.body.email);
@@ -39,6 +51,10 @@ exports.login = function(req, res){
 };
 
 exports.logout = function(req, res){
+
+    //session
+    req.session = null;
+
     res.render('user', {
         title : 'ออกจากระบบ',
         isLoggedIn : false

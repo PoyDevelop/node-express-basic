@@ -3,6 +3,6 @@ module.exports = function(app){
     app.get('/login', user.render);
     app.get('/login2', user.render);
     app.post('/login', user.login);
-    app.post('/logout', user.logout);
+    app.get('/logout', user.logout);
     //app.route('/login').get(user.render).post(user.login);
 ;}
