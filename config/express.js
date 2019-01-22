@@ -3,6 +3,8 @@ var morgan = require('morgan'); //เก็บ Log
 var compression = require('compression'); //บีบอัดข้อมูล
 var bodyParser = require('body-parser'); //รับ req body
 var sass = require('node-sass-middleware'); // ใช้งาน sass
+var validator = require('express-validator');
+
 
 module.exports = function(){
     var app = express();
@@ -16,6 +18,7 @@ module.exports = function(){
         extended: true
     }));
     app.use(bodyParser.json());
+    app.use(validator()); //ใส่หลัง bodyParser ทันที
 
     app.set('views', './app/views');
     app.set('view engine', 'jade');
