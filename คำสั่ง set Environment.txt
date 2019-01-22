@@ -1,0 +1,8 @@
+[-- Windows --(CMD) ]
+set NODE_ENV=development
+set NODE_ENV=production
+
+
+[-- Linux/Mac-- (UNIX Shell)]
+export NODE_ENV=development
+export NODE_ENV=production
