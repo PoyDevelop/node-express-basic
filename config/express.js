@@ -2,7 +2,7 @@ var express = require('express'); // http server
 var morgan = require('morgan'); //เก็บ Log
 var compression = require('compression'); //บีบอัดข้อมูล
 var bodyParser = require('body-parser'); //รับ req body
-
+var sass = require('node-sass-middleware'); // ใช้งาน sass
 
 module.exports = function(){
     var app = express();
@@ -21,6 +21,16 @@ module.exports = function(){
     app.set('view engine', 'jade');
 
     require('../app/routes/index.routes')(app);
+
+    //config SASS
+    app.use(sass({
+        src: './sass',
+        dest: './public/css',
+        outputStyle: 'compressed', // compressed, compact, expanded
+        prefix: '/css',
+        debug: true,
+        //indentedSyntax: true //ใช้กับ sass
+    }));
 
     app.use(express.static('./public'));
 
