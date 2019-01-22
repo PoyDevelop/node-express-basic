@@ -2,9 +2,10 @@
     "name": "node-express-basic",
     "version": "1.0.0",
     "dependencies": {
+        "body-parser": "^1.18.3",
+        "compression": "^1.7.3",
         "express": "4.16.4",
-        "morgan" : "1.6.0",
-        "compression" : "1.5.0",
-        "body-parser" : "1.13.0"
+        "jade": "1.11.0",
+        "morgan": "^1.9.1"
     }
 }
