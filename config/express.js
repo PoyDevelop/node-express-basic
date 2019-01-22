@@ -21,6 +21,7 @@ module.exports = function(){
     app.set('view engine', 'jade');
 
     require('../app/routes/index.routes')(app);
+    require('../app/routes/user.routes')(app);
 
     //config SASS
     app.use(sass({
