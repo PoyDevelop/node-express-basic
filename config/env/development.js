@@ -1,4 +1,5 @@
 module.exports = {
-    mongoUri: 'mongodb://localhost/db_pos',
+    debug: true,
+    mongoUri: 'mongodb://localhost/mydatabase',
     sessionSecret: '8sduf9sdfjdsfjdsli'
 };

@@ -1,3 +1,34 @@
+var User = require('mongoose').model('User');
+
+exports.list = function(req, res, next){
+    User.find({}, function(err, users){
+        if(err){
+            return next(err);
+        } else {
+            res.json(users);
+        }
+    });
+/*     res.render('index', {
+        'title' : 'NodeJS - MVC!',
+        'message' : 'Hello World Jade!'
+    }); */
+    
+
+};
+
+exports.create = function(req, res, next){
+    //console.log(req.body);
+    var user = new User(req.body);
+        user.save(function(err){
+        if(err){
+            return next(err);
+        } else {
+            res.json(user);
+        }
+    });
+};
+
+
 exports.render = function(req, res){
     var isLoggedIn = false;
     if(typeof req.session.remember !== 'undefined'){

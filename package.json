@@ -2,7 +2,7 @@
     "name": "node-express-basic",
     "version": "1.0.0",
     "dependencies": {
-        "body-parser": "^1.18.3",
+        "body-parser": "1.18.2",
         "compression": "^1.7.3",
         "express": "4.16.4",
         "jade": "1.11.0",
@@ -12,6 +12,6 @@
         "cookie-session": "1.2.0",
         "express-session": "1.11.0",
         "connect-redis": "2.4.0",
-        "mongoose": "3.8.0"
+        "mongoose": "^5.2.0"
     }
 }
