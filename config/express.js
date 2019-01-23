@@ -6,6 +6,7 @@ var bodyParser = require('body-parser'); //รับ req body
 //var validator = require('express-validator'); //ตัว Validator
 //var cookieSession = require('cookie-session');
 var session = require('express-session');
+//var passport = require('passport');
 //var RedisStore = require('connect-redis')(session); //ต้องมี express-session
 var config = require('./config');
 
@@ -25,6 +26,7 @@ module.exports = function(){
         name: 'session',
         keys: ['auoishdoaasdiojas', '4sf6d5sdf8sd6f45sd'] //ใส่ไป 2 key ให้หมุนเวียนการใช้
     }))*/
+
     app.use(session({
         secret: config.sessionSecret,
         resave: false,
@@ -36,6 +38,10 @@ module.exports = function(){
         //     pass: 'redis_password'
         // })
     }))
+
+    //config Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
 
 
     app.use(bodyParser.json());

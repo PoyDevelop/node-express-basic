@@ -12,6 +12,7 @@
         "cookie-session": "1.2.0",
         "express-session": "1.11.0",
         "connect-redis": "2.4.0",
-        "mongoose": "^5.2.0"
+        "mongoose": "^5.2.0",
+        "passport": "^0.4.0"
     }
 }
