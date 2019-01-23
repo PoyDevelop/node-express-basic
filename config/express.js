@@ -4,7 +4,10 @@ var compression = require('compression'); //บีบอัดข้อมูล
 var bodyParser = require('body-parser'); //รับ req body
 var sass = require('node-sass-middleware'); // ใช้งาน sass
 var validator = require('express-validator'); //ตัว Validator
-var cookieSession = require('cookie-session');
+//var cookieSession = require('cookie-session');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session); //ต้องมี express-session
+var config = require('./config');
 
 
 module.exports = function(){
@@ -14,10 +17,25 @@ module.exports = function(){
     } else {
         app.use(compression);
     }
+
+    //config - cookie-session
+    /*
     app.use(cookieSession({
         name: 'session',
         keys: ['auoishdoaasdiojas', '4sf6d5sdf8sd6f45sd'] //ใส่ไป 2 key ให้หมุนเวียนการใช้
+    }))*/
+    app.use(session({
+        secret: config.sessionSecret,
+        resave: false,
+        saveUninitialized: true,
+        store: new RedisStore({
+            host: 'localhost',
+            port: 6379,
+            db: 2,
+            pass: 'redis_password'
+        })
     }))
+
 
     app.use(bodyParser.urlencoded({
         extended: true
